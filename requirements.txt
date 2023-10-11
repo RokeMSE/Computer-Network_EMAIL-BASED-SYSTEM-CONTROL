@@ -1,0 +1,8 @@
+python
+IMAP
+SMTP
+psutil
+PILLOW
+opencv-python
+pynput
+AppOpener
