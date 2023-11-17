@@ -1,6 +1,4 @@
-python
 IMAP
-SMTP
 psutil
 PILLOW
 opencv-python

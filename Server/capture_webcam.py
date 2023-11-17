@@ -20,6 +20,7 @@ def capture_webcam_image(default_value=None):
             # create a PIL Image from the numpy array
             pil_image = Image.fromarray(rgb_frame)
 
+            pil_image.save("image/Webcam_image.png")
             return pil_image
         else:
             return "Unable to capture"

