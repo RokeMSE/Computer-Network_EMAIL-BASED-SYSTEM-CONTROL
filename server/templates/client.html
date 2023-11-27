@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Client{% endblock title %}
+
+
+{% block style %}
+{% include "client.css" %}
+{% endblock style %}
+
+
+{% block content %}
+
+<section class="client">
+    <header class="header-client">
+        <span id="intro-connect">Your remote desktop id: </span>
+        <span id="desktop-id">id</span>
+    </header>
+    <div class="box-user">
+        <div class="features">
+            <span id="webcam" class="active">Webcam capture</span>
+            <span id="screenshot">Screen capture</span>
+            <span id="shutdown">Shutdown/Restart</span>
+            <span id="app">Application</span>
+            <span id="key">Key logger</span>
+        </div>
+
+        <div class="input-user">
+            <div class="webcam choose"></div>
+            <div class="screenshot"></div>
+            <div class="shutdown">
+                <span class="sd">Shutdown</span>
+                <span class="rs">Restart</span>
+                <label for="timeDown">Set time:</label>
+                <input type="range" min="0">
+            </div>
+            <div class="app">
+                <div class="choose-app">
+                    <div class="chrome">
+                        <span>Chrome</span>
+                        <img src="#" alt="">
+                    </div>
+                    <div class="vscode">
+                        <span>Vs Code</span>
+                        <img src="#" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="key-logger"></div>
+        </div>
+        <div class="show-result">
+            <div class="webcam show">
+                <img src="Screenshot.png" alt="webcam_image">
+            </div>
+            <div class="screenshot">
+                <img src="../main/image/Screenshot.png" alt="screenshot_image">
+            </div>
+            <div class="shutdown"></div>
+            <div class="app"></div>
+            <div class="key-logger"></div>
+        </div>
+    </div>
+    <div class="send-request">
+        <div class="webcam select"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">sendRequest</a></div>
+        <div class="screenshot"><a href="mailto:nguyennam002004@gmail.com?subject=Screen%20capture&body=blank">sendRequest</a></div>
+        <div class="shutdown"><a href="mailto:nguyennam002004@gmail.com?subject=Shutdown%2FLogout&body=Shutdown">sendRequest</a></div>
+        <div class="app"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">sendRequest</a></div>
+        <div class="key-logger"><a href="mailto:nguyennam002004@gmail.com?subject=Key%20logger&body=Time%5B10%5D">sendRequest</a></div>
+    </div>
+
+</section>
+
+{% endblock content %}
+
+{% block script %}
+    {% include "scripts.js" %}
+{% endblock script %}
+
+
+
+

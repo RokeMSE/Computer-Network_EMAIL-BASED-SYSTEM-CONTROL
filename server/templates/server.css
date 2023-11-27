@@ -1,0 +1,23 @@
+.server {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inform {
+    margin-top: 7rem;
+}
+
+.check-state {
+    font-size: 50px;
+    padding-bottom: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    background: linear-gradient(45deg, #ff8a00, #e52e71, #1e90ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

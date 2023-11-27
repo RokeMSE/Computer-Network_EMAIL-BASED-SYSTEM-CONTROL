@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Client{% endblock title %}
+
+
+{% block style %}
+    {% include "client.css" %}
+{% endblock style %}
+
+
+{% block content %}
+
+<section class="client-login">
+    <span id="intro-connect">Please enter your remote desktop id</span>
+    <input type="number" name="remoteId" value="12345">
+    <button type="submit">Connect</button>
+</section>
+
+{% endblock content %} 
+
+
+{% block script %}
+    {% include "client_login_scipt.js" %}
+{% endblock script %}

@@ -1,0 +1,71 @@
+.client {
+    border: 3px solid #fff;
+    border-radius: 20px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 90vh;
+    margin: 2rem;
+}
+
+.header-client {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px groove rgb(249, 249, 249);
+    padding: 1rem 0;
+}
+
+.box-user {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.features>* {
+    cursor: pointer;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    background-color: bisque;
+    border-radius: 10px;
+    margin: 0.5rem 1rem;
+    font-family: sans-serif;
+}
+
+.features > .active {
+    background-color: pink;
+}
+.input-user {
+
+}
+
+.input-user > * {
+    border: 2px solid green;
+    padding: 0.5rem 0;
+    display: none;
+}
+.input-user > .choose {
+    display: block;
+}
+
+.send-request > *{
+    display: none;
+}
+
+.send-request > .select {
+    display: block;
+}
+
+.show-result > *{
+    display: none;
+}
+.show-result > .show {
+    display: block;
+}
