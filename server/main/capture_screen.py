@@ -8,7 +8,7 @@ def capture_screen(default_value=None):
         img = ImageGrab.grab()
         
         # Create the directory if it doesn't exist
-        directory = "server/static/images"
+        directory = "static/server/images"
         if not os.path.exists(directory):
             os.makedirs(directory)
         

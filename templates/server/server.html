@@ -1,0 +1,20 @@
+{% extends 'server/base.html' %}
+{% load static %}
+
+
+{% comment %} {% block title %}Server{% endblock title %} {% endcomment %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "server/styles/server.css" %}"/>
+{% endblock style %}
+
+
+{% block content %}
+
+<section class="server">
+    <div class="inform">
+        <span class="check-state">Server is running...</span>
+    </div>
+</section>
+
+{% endblock content %}

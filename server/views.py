@@ -1,31 +1,21 @@
 from django.shortcuts import render
-from django.template import loader
-from django.http import HttpResponse
 
 import os
 import threading
 
-def load_home(request):
-    return render(request, 'home.html')
+# Create your views here.
+def index(request):
+    return render(request, 'server/home.html')
 
-def run_Emailserver():
-    os.system("python .\\server\\main\\main.py")
+def run_EmailServer():
+    os.system("python ./server/main/main.py")
 
-def server_login(request):
+def loadServer(request):
     try:
-        threading.Timer(1, run_Emailserver).start()
+        threading.Timer(1, run_EmailServer).start()
     except:
         pass
-    return render(request, 'server.html')
+    return render(request, 'server/server.html')
 
-
-def client_login(request):
-
-    return render(request, 'client.html')
-
-
-
-
-
-
-# Create your views here.
+def loadClient(request):
+    return render(request, 'server/client.html')
