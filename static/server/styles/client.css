@@ -1,18 +1,25 @@
-.main.box {
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.main_box {
+    position: relative;
 }
 
 .client {
     box-sizing: border-box;
+    position: absolute;
     border: 3px solid #fff;
     border-radius: 20px;
 
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: calc(100vh - 10rem);
+    width: calc(100% - 4rem);
+    min-height: calc(100% - 4rem);
     margin: 2rem;
 }
 
@@ -44,13 +51,14 @@
     margin: 0.5rem 1rem;
     font-family: sans-serif;
 }
-
+.features>*:hover {
+    background-color: pink;
+    color: #fff;
+}
 .features > .active {
     background-color: pink;
 }
-.input-user {
 
-}
 
 .input-user > * {
     display: none;
@@ -59,18 +67,51 @@
     display: block;
 }
 
+.input-user .sdlg {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.opt {
+    padding: 2rem 0;
+}
+
+.opt > .using {
+    background-color: rgb(222, 132, 183);
+}
+
+.opt > * {
+    background-color: bisque;
+    padding: 0.3rem 1rem;
+    margin: 0 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.opt > *:hover {
+    background-color: rgb(222, 132, 183);
+    color: #fff;
+
+}
+
+.sdlg > p {
+    margin-top: 1rem;
+}
+
+
 .send-request > *{
     display: none;
 }
-
-.send-request > .select{
-    display: block;
-
+.send-request {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
 }
+
 
 .send-request > .select {
     display: block;
-    background-color: green;
 }
 .send-request > .select > a{
     padding: 0.8rem 0.7rem;
@@ -94,8 +135,11 @@
 }
 
 img {
-    box-sizing: border-box;
     width: 50%;
     height: auto;
     object-fit: cover;
+}
+
+.hide-image {
+    display: none;
 }

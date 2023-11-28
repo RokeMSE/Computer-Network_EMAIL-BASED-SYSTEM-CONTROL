@@ -1,6 +1,6 @@
 import os
 import threading
-
+import re
 
 def shutdown():
     os.system("shutdown -s -t 0")
@@ -13,9 +13,11 @@ def logout():
 def shutdown_logout(function):
     result = None
     if "Shutdown" in function:
-        result = "Server will shutdown in 30s"
-        threading.Timer(30, shutdown).start()
+        timeLog = int(re.search(r"Shutdown\[(\d+)\]", function).group(1))
+        result = f"Server will shutdown in {timeLog}s"
+        threading.Timer(timeLog, shutdown).start()
     elif "Logout" in function:
-        result = "Server will logout in 30s"
-        threading.Timer(30, logout).start()
+        timeLog = int(re.search(r"Logout\[(\d+)\]", function).group(1))
+        result = f"Server will logout in {timeLog}s"
+        threading.Timer(timeLog, logout).start()
     return "<div class='mb-2'><b>Shutdown/Logout:</b> " + result + "</div>"

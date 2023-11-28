@@ -169,6 +169,8 @@ def function(subject, content):
 
     return res
 
+
+
 if __name__ == "__main__":
     init()
     receive_mail(imap, smtp)
