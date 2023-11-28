@@ -20,10 +20,8 @@ def server_login(request):
 
 
 def client_login(request):
-    context = {
-        'webcamImg' : '../main/image/webcam_image.png'
-    }
-    return render(request, 'client.html', context)
+
+    return render(request, 'client.html')
 
 
 

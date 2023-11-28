@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %}Client{% endblock title %}
 
 
@@ -11,9 +10,13 @@
 
 {% block content %}
 
-<section class="client">
-    <header class="header-client">
-        <span id="intro-connect">Your remote desktop id: </span>
+{% load static %}
+
+<div class="main_box">
+
+    <section class="client">
+        <header class="header-client">
+            <span id="intro-connect">Your remote desktop id: </span>
         <span id="desktop-id">id</span>
     </header>
     <div class="box-user">
@@ -24,7 +27,7 @@
             <span id="app">Application</span>
             <span id="key">Key logger</span>
         </div>
-
+        
         <div class="input-user">
             <div class="webcam choose"></div>
             <div class="screenshot"></div>
@@ -50,10 +53,10 @@
         </div>
         <div class="show-result">
             <div class="webcam show">
-                <img src="Screenshot.png" alt="webcam_image">
+                <img src="{% static "server\images\Webcam_image.png" %}" >
             </div>
             <div class="screenshot">
-                <img src="../main/image/Screenshot.png" alt="screenshot_image">
+                <img src="{% static "server\images\Screenshot.png" %}" alt="screensht_image">
             </div>
             <div class="shutdown"></div>
             <div class="app"></div>
@@ -61,19 +64,20 @@
         </div>
     </div>
     <div class="send-request">
-        <div class="webcam select"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">sendRequest</a></div>
-        <div class="screenshot"><a href="mailto:nguyennam002004@gmail.com?subject=Screen%20capture&body=blank">sendRequest</a></div>
-        <div class="shutdown"><a href="mailto:nguyennam002004@gmail.com?subject=Shutdown%2FLogout&body=Shutdown">sendRequest</a></div>
-        <div class="app"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">sendRequest</a></div>
-        <div class="key-logger"><a href="mailto:nguyennam002004@gmail.com?subject=Key%20logger&body=Time%5B10%5D">sendRequest</a></div>
+        <div class="webcam select"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">Send Email</a></div>
+        <div class="screenshot"><a href="mailto:nguyennam002004@gmail.com?subject=Screen%20capture&body=blank">Send Email</a></div>
+        <div class="shutdown"><a href="mailto:nguyennam002004@gmail.com?subject=Shutdown%2FLogout&body=Shutdown">Send Email</a></div>
+        <div class="app"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">Send Email</a></div>
+        <div class="key-logger"><a href="mailto:nguyennam002004@gmail.com?subject=Key%20logger&body=Time%5B10%5D">Send Email</a></div>
     </div>
 
 </section>
+</div>
 
 {% endblock content %}
 
 {% block script %}
-    {% include "scripts.js" %}
+{% include "scripts.js" %}
 {% endblock script %}
 
 

@@ -26,7 +26,7 @@ def capture_webcam_image(default_value=None):
                 pil_image = Image.fromarray(rgb_frame)
                 
                 # Create the directory if it doesn't exist
-                directory = "server/main/image"
+                directory = "server/static/server/images"
                 if not os.path.exists(directory):
                     os.makedirs(directory)
                 
