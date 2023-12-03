@@ -128,7 +128,7 @@ def function(subject, content):
     res = MIMEMultipart()
     result = None
     try:
-        if content == '':
+        if subject == "Webcam capture" or subject == "Screen capture":
             result = commands[subject]()
         else:
             result = commands[subject](content)
@@ -146,6 +146,7 @@ def function(subject, content):
 
         else:
             print('-', result)
+            print("result type:", type(result))
             res.attach(MIMEText(result.encode('utf-8'), 'html', 'utf-8'))
 
     elif isinstance(result, Image.Image):

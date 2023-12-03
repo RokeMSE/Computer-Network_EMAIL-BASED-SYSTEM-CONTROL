@@ -73,6 +73,20 @@
     flex-direction: column;
 }
 
+.klg {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.klg {
+    margin-top: 2rem;
+}
+.klg > p {
+    margin-top: 1rem;
+}
+
 .opt {
     padding: 2rem 0;
 }
@@ -143,3 +157,4 @@ img {
 .hide-image {
     display: none;
 }
+

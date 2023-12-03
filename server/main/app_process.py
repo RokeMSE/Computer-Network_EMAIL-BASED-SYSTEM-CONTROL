@@ -97,33 +97,33 @@ def parse_msg(msg):
     return command
 
 
-def application_process(func):
-    command = parse_msg(func)
+def application_process(content):
+    command = parse_msg(content)
     return_text = ""
     for item in command:
         result = ""
 
-        if "List Application" in item:
+        if "List Application" in content:
             result = "List of application\n" + "Id - Name - Thread\n" + list_apps()
 
-        if "List Process" in item:
+        if "List Process" in content:
             result = "List of process\n" + "Id - Name - Thread\n" + list_processes()
 
-        if "Kill" in item:
+        if "Kill" in content:
             try:
-                name = re.search(r"Kill\[name:(.*)\]", item).group(1)
+                name = re.search(r"Kill\[name:(.*)\]", content).group(1)
             except:
-                return_text += f"Wrong format at {item}\n"
+                return_text += f"Wrong format at {content}\n"
                 return_text += f"Format should be: Kill[name:<Application/Process name>]"
                 continue
 
             result = "Kill application/process:\n" + kill(name)
 
-        if "Start" in item:
+        if "Start" in content:
             try:
-                name = re.search(r'Start\[name:(.*)\]', item).group(1)
+                name = re.search(r'Start\[name:(.*)\]', content).group(1)
             except:
-                return_text += f"Wrong format at {item}\n"
+                return_text += f"Wrong format at {content}\n"
                 return_text += f"Format should be: Start[name:<Application/Process name>]"
                 continue
 
@@ -131,5 +131,7 @@ def application_process(func):
 
         if result != "":
             return_text += "\n" + result
+
+        print("Application/Process @@@ ### === ", result)
 
     return return_text
