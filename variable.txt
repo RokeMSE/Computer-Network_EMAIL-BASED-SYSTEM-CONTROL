@@ -1,1 +1,0 @@
-Key.shift_r 'N' 'g' 'u' 'y' 'e' 'e' '·' Key.backspace Key.backspace 'ê' 'n' 'x' '·' Key.backspace Key.backspace Key.backspace 'ễ' 'n' Key.space Key.shift_r 'B' 'a' 's' '·' Key.backspace Key.backspace 'á' Key.space Key.shift_r 'A' 'n' 

@@ -33,6 +33,21 @@ def init():
     imap = imaplib.IMAP4_SSL(IMAP_URL, PORT_IMAP)
     smtp = smtplib.SMTP_SSL(SMTP_URL, PORT_SMTP)
     
+    kl.write_to_file("", "list_processes.json")
+    kl.write_to_file("", "list_apps.json")
+    kl.write_to_file("", "variable.txt")
+    file_path_webcam = "static/server/images/Webcam_image.png"
+    if os.path.exists(file_path_webcam):
+        os.remove(file_path_webcam)
+    else :
+        print("The file does not exist")
+
+    file_path_screen = "static/server/images/Screenshot.png"
+    if os.path.exists(file_path_screen):
+        os.remove(file_path_screen)
+    else :
+        print("The file does not exist")
+
     try:
         print("Initializing IMAP... ", end = '')
         imap.login(USER, PASSWORD)
@@ -146,7 +161,6 @@ def function(subject, content):
 
         else:
             print('-', result)
-            print("result type:", type(result))
             res.attach(MIMEText(result.encode('utf-8'), 'html', 'utf-8'))
 
     elif isinstance(result, Image.Image):
@@ -175,7 +189,6 @@ def function(subject, content):
 if __name__ == "__main__":
     init()
     receive_mail(imap, smtp)
-
     # logout and close mailbox
     imap.logout()
     smtp.quit()

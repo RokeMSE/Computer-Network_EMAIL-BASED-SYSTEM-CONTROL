@@ -65,6 +65,7 @@
     justify-content: space-between;
     margin-top: 3rem;
     padding: 0 3rem;
+    width: 42rem;
 }
 
 .btn > * {

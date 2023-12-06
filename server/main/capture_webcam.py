@@ -15,12 +15,11 @@ def capture_webcam_image(default_value=None):
         bool, image = camera.read()
 
         if bool:
+            cv2.waitKey(30)
             # convert color space from BGR to RGB
             rgb_frame = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-
-            # pil_image.save("image/Webcam_image.png")
-        
+            pil_image = None
             try:
                 # create a PIL Image from the numpy array
                 pil_image = Image.fromarray(rgb_frame)
@@ -36,8 +35,6 @@ def capture_webcam_image(default_value=None):
             except Exception as e:
                 print("Error occurred:", e)
                 return default_value
-
-
-            return pil_image
+            
         else:
             return "Unable to capture"

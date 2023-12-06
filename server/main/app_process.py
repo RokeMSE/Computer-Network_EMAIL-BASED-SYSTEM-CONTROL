@@ -1,8 +1,24 @@
 import psutil
 import os
 import re
-from AppOpener import open
-from AppOpener import close
+import AppOpener
+import json
+
+def string_to_json_string(input_string):
+    records = []
+    lines = input_string.strip().split('\n')
+    for line in lines:
+        parts = line.strip().split(' - ')
+        if len(parts) == 3:
+            record = {
+                'id': parts[0],
+                'name': parts[1],
+                'thread': parts[2]
+            }
+            records.append(record)
+
+    json_string = json.dumps(records, indent=4)
+    return json_string
 
 
 def list_apps():
@@ -48,6 +64,9 @@ def list_apps():
     for item in [(id, name, thread)for id, name, thread in zip(app_id, app_name, app_thread)]:
         result += ' - '.join(str(i) for i in item) + '\n'
 
+    with open('list_apps.json', 'w') as f:
+        f.write(string_to_json_string(result))
+
     return result
 
 
@@ -73,19 +92,22 @@ def list_processes():
     for item in [(id, name, thread) for id, name, thread in zip(proc_pid, proc_name, proc_thread)]:
         result += ' - '.join(str(i) for i in item) + '\n'
 
+    with open('list_processes.json', 'w') as f:
+        f.write(string_to_json_string(result))
+
     return result
 
 
 def kill(name):
     if name + ".exe" in (i.name() for i in psutil.process_iter()):
-        close(name)
+        AppOpener.close(name)
         return f"Process with name {name} was killed.\n"
     else:
         return f"Failed to kill application/process with name {name}.\n"
 
 
 def start(name):
-    open(name)
+    AppOpener.open(name)
     if name + ".exe" in (i.name() for i in psutil.process_iter()):
         return f"Server started application/process with name {name}.\n"
     else:
@@ -93,7 +115,11 @@ def start(name):
 
 
 def parse_msg(msg):
-    command = [x for x in msg.split(" - ")]
+    if "&amp;&amp;" in msg:
+        command = [x for x in msg.split("&amp;&amp;")]
+    else: 
+        command = [x for x in msg.split("&&")]
+
     return command
 
 
@@ -101,29 +127,31 @@ def application_process(content):
     command = parse_msg(content)
     return_text = ""
     for item in command:
+        print("item: =================================== ", item)
+        print("command.length: ", len(command))
         result = ""
 
-        if "List Application" in content:
+        if "List Application" or "List=Application" or "List = Application" in item:
             result = "List of application\n" + "Id - Name - Thread\n" + list_apps()
 
-        if "List Process" in content:
+        if "List Process" or "List = Process" or "List=Process"  in item:
             result = "List of process\n" + "Id - Name - Thread\n" + list_processes()
 
-        if "Kill" in content:
+        if "Kill" in item:
             try:
-                name = re.search(r"Kill\[name:(.*)\]", content).group(1)
+                name = re.search(r"Kill\[name:(.*)\]", item).group(1)
             except:
-                return_text += f"Wrong format at {content}\n"
+                return_text += f"Wrong format at {item}\n"
                 return_text += f"Format should be: Kill[name:<Application/Process name>]"
                 continue
 
             result = "Kill application/process:\n" + kill(name)
 
-        if "Start" in content:
+        if "Start" in item:
             try:
-                name = re.search(r'Start\[name:(.*)\]', content).group(1)
+                name = re.search(r'Start\[name:(.*)\]', item).group(1)
             except:
-                return_text += f"Wrong format at {content}\n"
+                return_text += f"Wrong format at {item}\n"
                 return_text += f"Format should be: Start[name:<Application/Process name>]"
                 continue
 
@@ -132,6 +160,6 @@ def application_process(content):
         if result != "":
             return_text += "\n" + result
 
-        print("Application/Process @@@ ### === ", result)
+    print("return_text: ", return_text)
 
     return return_text

@@ -17,8 +17,7 @@
 
 <section class="client">
     <header class="header-client">
-        <span id="intro-connect">Your remote desktop id: </span>
-        <span id="desktop-id">id</span>
+        <span id="intro-header">The control center</span>
     </header>
     <div class="box-user">
         <div class="features">
@@ -49,43 +48,30 @@
                 <div class="main-app">
                     <header>
                         <form action="" id="search-app">
-                            <input type="text" name="" id="" placeholder="Search application/process...">
+                            <label for="search-name-app">Search:</label>
+                            <input type="text" name="" id="search-name-app" placeholder="The name of app or process...">
                         </form>
+                        <div id="add-app-container">
+
+                            <form action="" id="add-app">
+                                <label for="open-new-app-process">Open:</label>
+                                <input type="text" name="" id="open-new-app-process" placeholder="E.g: Messenger...">
+                                <a href="#">Send email</a>
+                            </form>
+                        </div>
                     </header>
                     <div id="app-list">
-                        <h1 class="title">List application and process:</h1>
-                        <ul>    
-                            <li>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/96px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="" class="app-image">
-                                <span class="name">Chrome</span>
-                                <span class="real-name">chrome</span>
-                                <span class="delete">delete</span>
-                            </li>
-                            <li>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/768px-Visual_Studio_Code_1.35_icon.svg.png" alt="" class="app-image">
-                                <span class="name">Visual Studio Code</span>
-                                <span class="real-name">vscode</span>
-                                <span class="delete">delete</span>
-                            </li>
-                            <li>
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/.docx_icon.svg/768px-.docx_icon.svg.png" alt="" class="app-image">
-                                <span class="name">Word</span>
-                                <span class="real-name">winword</span>
-                                <span class="delete">delete</span>
-                            </li>
-                        </ul>
+                        <h1 id="title-list-apps">List application:</h1>
+                        <button><a id="get-data-list-apps" href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=List%20Application">Get data (send email)</a></button>
+                        <table id="list-apps"></table>
+                        <h1 id="title-list-processes">List process:</h1>
+                        <button><a id="get-data-list-processes" href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=List%20Process">Get data (send email)</a></button>
+                        <table id="list-processes"></table>                            
                     </div>
-                    <form action="" id="add-app">
-                        <label for="name">Enter name:</label>
-                        <input type="text" name="" id="name" placeholder="Visual Studio Code...">
-                        <label for="real_name">Enter real name:</label>
-                        <input type="text" name="" id="real-name" placeholder="vscode...">
-                        <button>Add</button>
-                    </form>
                 </div>
             </div>
             <div class="key-logger">
-                <div class="klg">
+                <div class="klg" style="margin-bottom: 2rem;">
                     <div class="setTime">
                         <label for="settime">Set time:</label>
                         <input id="pi_inputkl" type="range" min="1" max="60" step="1" value="10"/>
@@ -96,15 +82,14 @@
         </div>
         <div class="show-result">
             <div class="webcam show">
-                <img src="{% static "server\images\Webcam_image.png"%}" onerror="this.classList.add('hide-image');" alt="webcam_image" >
+                <img id ="webcam-image" src="{% static "server\images\Webcam_image.png" %}" onerror="this.classList.add('hide-image');" alt="webcam_image" >
             </div>
             <div class="screenshot">
-                <img src="{% static "server\images\Screenshot.png" %}" onerror="this.classList.add('hide-image');" alt="screenshot_image">
+                <img id="screenshot-image" src="{% static "server\images\Screenshot.png" %}" onerror="this.classList.add('hide-image');" alt="screenshot_image">
             </div>
             <div class="shutdown"></div>
             <div class="app"></div>
             <div class="key-logger">
-                <button id="refresh-data">Refresh data</button>
                 <span id="show-key-logger"></span>
             </div>
         </div>
@@ -113,7 +98,7 @@
         <div class="webcam select"><a href="mailto:nguyennam002004@gmail.com?subject=Webcam%20capture&body=blank">Send Email</a></div>
         <div class="screenshot"><a href="mailto:nguyennam002004@gmail.com?subject=Screen%20capture&body=blank">Send Email</a></div>
         <div class="shutdown"><a id="sd_lg" href="mailto:nguyennam002004@gmail.com?subject=Shutdown%2FLogout&body=Shutdown[10]">Send Email</a></div>
-        <div class="app"><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=blank">Send Email</a></div>
+        <div class="app"><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=List%20Application">Send Email</a></div>
         <div class="key-logger"><a id="klMail" href="mailto:nguyennam002004@gmail.com?subject=Key%20logger&body=Time%5B10%5D">Send Email</a></div>
     </div>
 

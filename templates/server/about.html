@@ -1,0 +1,54 @@
+{% extends "server/base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="container py-5 py-lg-6">
+    <h2 class="text-center mb-5">Info all members in group</h2>
+    <div class="row gy-4">
+      <div class="col-md">
+        <blockquote class="text-center">
+          <img src="{% static "server/avatars/an.jpg" %}" style="width:150px; height: 150px; object-fit: contain; border-radius: 50%;" class="avatar avatar-lg mb-3" alt="An">
+          <cite class="d-block h5 fst-normal mb-1">Nguyễn Bá An</cite>
+          <span class="small text-secondary text-uppercase">22127472</span>
+          <p class="quote text-secondary mt-3 mb-0">Focus theme is great. It really saves me time and effort. Thank you so much for your help</p>
+        </blockquote>
+      </div>
+      <div class="col-md">
+        <blockquote class="text-center">
+          <img src="{% static "server/avatars/khoa.jpg" %}" style="width:150px; height: 150px; object-fit: contain; border-radius: 50%;" class="avatar avatar-lg mb-3" alt="khoa">
+          <cite class="d-block h5 fst-normal mb-1">Trần Nguyên Đăng Khoa</cite>
+          <span class="small text-secondary text-uppercase">22127***</span>
+          <p class="quote text-secondary mt-3 mb-0">Focus is great. I will refer everyone I know. This theme is worth much more than I paid. I'm loving it.</p>
+        </blockquote>
+      </div>
+      <div class="col-md">
+        <blockquote class="text-center">
+          <img src="{% static "server/avatars/quyen.jpg" %}" style="width:150px; height: 150px; object-fit: contain; border-radius: 50%;" class="avatar avatar-lg mb-3" alt="quyen">
+          <cite class="d-block h5 fst-normal mb-1">Nguyễn Trần Yến Quyên</cite>
+          <span class="small text-secondary text-uppercase">22127***</span>
+          <p class="quote text-secondary mt-3 mb-0">Not able to tell you how happy I am with Focus. It's exactly what I've been looking for.</p>
+        </blockquote>
+      </div>
+      <div class="col-md">
+        <blockquote class="text-center">
+          <img src="{% static "server/avatars/nhat.jpg" %}" style="width:150px; height: 150px; object-fit: contain; border-radius: 50%;" class="avatar avatar-lg mb-3" alt="nhat">
+          <cite class="d-block h5 fst-normal mb-1">Lê Minh Nhật</cite>
+          <span class="small text-secondary text-uppercase">22127***</span>
+          <p class="quote text-secondary mt-3 mb-0">Not able to tell you how happy I am with Focus. It's exactly what I've been looking for.</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+{% endblock script %}
