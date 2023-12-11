@@ -1,0 +1,27 @@
+[
+    {
+        "id": "11688",
+        "name": "Application Frame Host",
+        "thread": "22"
+    },
+    {
+        "id": "13496",
+        "name": "Google Chrome",
+        "thread": "42"
+    },
+    {
+        "id": "9012",
+        "name": "Visual Studio Code",
+        "thread": "45"
+    },
+    {
+        "id": "10032",
+        "name": "WindowsTerminal.exe",
+        "thread": "12"
+    },
+    {
+        "id": "5168",
+        "name": "Zalo",
+        "thread": "33"
+    }
+]

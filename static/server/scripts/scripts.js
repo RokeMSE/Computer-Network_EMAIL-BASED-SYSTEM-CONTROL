@@ -134,7 +134,7 @@ setInterval(function() {
                         <td>${item.id}</td>
                         <td class="name">${item.name}</td>
                         <td>${item.thread}</td>
-                        <td><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=Kill%5Bname%3A${item.name}%5D%26%26List%20Application">Kill</a></td>
+                        <td><a href="mailto:nguyennam002004@gmail.com?subject=Application%2FProcess&body=Kill%5Bid%3A${item.id}%5D%26%26List%20Application">Kill</a></td>
                     `;
                     tableListApps.appendChild(itemElement);                
                 });

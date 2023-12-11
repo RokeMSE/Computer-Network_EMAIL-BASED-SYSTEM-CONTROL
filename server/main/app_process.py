@@ -3,6 +3,7 @@ import os
 import re
 import AppOpener
 import json
+import signal
 
 def string_to_json_string(input_string):
     records = []
@@ -98,12 +99,15 @@ def list_processes():
     return result
 
 
-def kill(name):
-    if name + ".exe" in (i.name() for i in psutil.process_iter()):
-        AppOpener.close(name)
-        return f"Process with name {name} was killed.\n"
-    else:
-        return f"Failed to kill application/process with name {name}.\n"
+def kill(id):
+    os.kill(int(id), signal.SIGBREAK)
+    return f"Process with name {id} was killed.\n"
+
+    # if name + ".exe" in (i.name() for i in psutil.process_iter()):
+    #     AppOpener.close(name)
+    #     return f"Process with name {name} was killed.\n"
+    # else:
+    #     return f"Failed to kill application/process with name {name}.\n"
 
 
 def start(name):
@@ -125,29 +129,28 @@ def parse_msg(msg):
 
 def application_process(content):
     command = parse_msg(content)
+    print("len of command:=============================== ", len(command))
     return_text = ""
     for item in command:
-        print("item: =================================== ", item)
-        print("command.length: ", len(command))
+        print("item:============================== \n", item)
         result = ""
 
-        if "List Application" or "List=Application" or "List = Application" in item:
+        if ("List Application" in item) or ("List=Application" in item) or ("List = Application" in item) or ("List App" in item) or (("List" in item) and ("App" not in item)):
             result = "List of application\n" + "Id - Name - Thread\n" + list_apps()
 
-        if "List Process" or "List = Process" or "List=Process"  in item:
+        elif ("List Process" in item) or ("List=Process" in item) or ("List = Process" in item) or ("List Proc" in item):
             result = "List of process\n" + "Id - Name - Thread\n" + list_processes()
 
-        if "Kill" in item:
+        elif "Kill" in item:
+            id = 0
             try:
-                name = re.search(r"Kill\[name:(.*)\]", item).group(1)
+                id = int(re.search(r"Kill\[id:(.*)\]", item).group(1))
             except:
                 return_text += f"Wrong format at {item}\n"
-                return_text += f"Format should be: Kill[name:<Application/Process name>]"
-                continue
-
-            result = "Kill application/process:\n" + kill(name)
-
-        if "Start" in item:
+                return_text += f"Format should be: Kill[id:<Application/Process id>]"
+                
+            result = "Kill application/process:\n         " + kill(id)
+        elif "Start" in item:
             try:
                 name = re.search(r'Start\[name:(.*)\]', item).group(1)
             except:
@@ -160,6 +163,5 @@ def application_process(content):
         if result != "":
             return_text += "\n" + result
 
-    print("return_text: ", return_text)
 
     return return_text
